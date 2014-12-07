@@ -7,25 +7,29 @@ require_relative 'src/quiz_factory'
 include ArgUtility
 include Curses
 
-def take_quiz 
+def take_quiz
+  quiz = QuizFactory.generate_quiz(ARGV[0], ARGV[1])
+  quiz.size.times do
+    question = quiz.get_random_question
+    WindowsUtil.refresh_windows(question)
+    answer = WindowsUtil.build_answer_window
+    quiz = quiz.answer_question(question, answer)
+  end
+  WindowsUtil.build_results_window(quiz.results)
+end
+
+def initialize_interface
   init_screen
   begin
     crmode
-    quiz = QuizFactory.generate_quiz(ARGV[0], ARGV[1])
-    quiz.size.times do
-      question = quiz.get_random_question
-      WindowsUtil.refresh_windows(question)
-      answer = WindowsUtil.build_answer_window
-      quiz = quiz.answer_question(question, answer)
-    end
-    WindowsUtil.build_results_window(quiz.results)
+    take_quiz
   ensure
     close_screen
   end
 end
 
 if valid_args?(ARGV)
-  take_quiz
+  initialize_interface
 else
   puts usage_info
 end
