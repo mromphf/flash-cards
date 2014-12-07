@@ -14,7 +14,7 @@ def take_quiz
     quiz = QuizFactory.generate_quiz(ARGV[0], ARGV[1])
     quiz.size.times do
       question = quiz.get_random_question
-      WindowsUtil.initialize_windows(question)
+      WindowsUtil.refresh_windows(question)
       answer = WindowsUtil.build_answer_window
       quiz = quiz.answer_question(question, answer)
     end
