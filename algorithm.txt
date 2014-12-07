@@ -1,0 +1,11 @@
+Quiz starts:
+
+    Validate arguments
+    Generate quiz 
+    Loop for length of quiz duration
+        Output question
+        Retrieve answer from user  
+        Evaluate answer 
+        Modify user score
+    End loop
+    Present quiz results
