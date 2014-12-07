@@ -1,18 +1,27 @@
 #!/usr/bin/ruby1.9.1 -w
+require 'curses'
 require_relative 'src/arg_utility'
 require_relative 'src/input_utility'
+require_relative 'src/windows_util'
 require_relative 'src/quiz_factory'
 include ArgUtility
+include Curses
 
 def take_quiz 
-  quiz = QuizFactory.generate_quiz(ARGV[0], ARGV[1])
-  quiz.size.times do
-    question = quiz.get_random_question
-    answer = InputUtility.get_user_int(question.to_s)
-    puts quiz.give_feedback(question, answer)
-    quiz = quiz.answer_question(question, answer)
+  init_screen
+  begin
+    crmode
+    quiz = QuizFactory.generate_quiz(ARGV[0], ARGV[1])
+    quiz.size.times do
+      question = quiz.get_random_question
+      WindowsUtil.initialize_windows(question)
+      answer = WindowsUtil.build_answer_window
+      quiz = quiz.answer_question(question, answer)
+    end
+    WindowsUtil.build_results_window(quiz.results)
+  ensure
+    close_screen
   end
-  puts quiz.results
 end
 
 if valid_args?(ARGV)

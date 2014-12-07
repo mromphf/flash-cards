@@ -29,4 +29,9 @@ describe WindowsUtil do
     question_window = WindowsUtil.build_question_window(AdditionQuestion.new(1,1))
     expect(question_window).to be_a(Window)
   end
+
+  it "should generate the answer window" do
+    answer_window = WindowsUtil.build_answer_window
+    expect(answer_window).to be_a(Window)
+  end
 end

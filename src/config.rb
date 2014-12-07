@@ -9,6 +9,6 @@ module GlobalConfig
                        INTERMEDIATE => 10..99,
                        ADVANCED => 100..299 }
   QUIZ_LENGTH = 5
-  WINDOW_HEIGHT = 6
+  WINDOW_HEIGHT = 5
   WINDOW_LENGTH = 40
 end
