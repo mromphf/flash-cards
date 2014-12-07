@@ -13,7 +13,7 @@ class Question
       if PARAMETER_RANGES[difficulty].nil?
         raise "ERROR: Cannot generate operand with the difficulty provided."
       end
-      return Random.rand(PARAMETER_RANGES[difficulty])
+      Random.rand(PARAMETER_RANGES[difficulty])
     end
 end
 
