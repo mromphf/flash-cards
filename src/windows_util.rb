@@ -17,7 +17,7 @@ class WindowsUtil
     win.setpos(2, 3)
     win.addstr("#{results}")
     win.setpos(3, 3)
-    win.addstr("Hit any key...")
+    win.addstr("Hit enter...")
     win.getch
   end
 
