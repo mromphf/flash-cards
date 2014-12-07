@@ -9,11 +9,13 @@ include Curses
 
 def take_quiz
   quiz = QuizFactory.generate_quiz(ARGV[0], ARGV[1])
+  #WindowsUtil.build_score_window
   quiz.size.times do
     question = quiz.get_random_question
-    WindowsUtil.refresh_windows(question)
+    WindowsUtil.build_question_window(question)
     answer = WindowsUtil.build_answer_window
     quiz = quiz.answer_question(question, answer)
+    WindowsUtil.build_score_window(quiz.give_feedback(question, answer))
   end
   WindowsUtil.build_results_window(quiz.results)
 end
