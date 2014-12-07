@@ -4,25 +4,17 @@ require_relative "config.rb"
 class Quiz
   include GlobalConfig
 
-  def initialize(difficulty)
-    @counter = 0
-    @score = 0
+  def initialize(difficulty, score)
+    @score = score
     @difficulty = difficulty
   end
 
-  def running?
-    @counter != QUIZ_LENGTH
+  def size
+    QUIZ_LENGTH
   end
 
   def give_feedback(question, answer)
     question.correct_answer?(answer) ? "Correct!" : "Wrong..."
-  end
-  
-  def answer_question!(question, answer)
-    @counter += 1
-    if question.correct_answer?(answer)
-      @score += 1
-    end
   end
 
   def results
@@ -34,11 +26,21 @@ class AdditionQuiz < Quiz
   def get_random_question
     AdditionQuestion.get_random_question(@difficulty)
   end
+  
+  def answer_question(question, answer)
+    score = question.correct_answer?(answer) ? @score + 1 : @score
+    AdditionQuiz.new(@difficulty, score)
+  end
 end
 
 class SubtractionQuiz < Quiz
   def get_random_question
     SubtractionQuestion.get_random_question(@difficulty)
+  end
+  
+  def answer_question(question, answer)
+    score = question.correct_answer?(answer) ? @score + 1 : @score
+    SubtractionQuiz.new(@difficulty, score)
   end
 end
 
@@ -46,10 +48,20 @@ class MultiplicationQuiz < Quiz
   def get_random_question
     MultiplicationQuestion.get_random_question(@difficulty)
   end
+
+  def answer_question(question, answer)
+    score = question.correct_answer?(answer) ? @score + 1 : @score
+    MultiplicationQuiz.new(@difficulty, score)
+  end
 end
 
 class DivisionQuiz < Quiz
   def get_random_question
     DivisionQuestion.get_random_question(@difficulty)
+  end
+
+  def answer_question(question, answer)
+    score = question.correct_answer?(answer) ? @score + 1 : @score
+    DivisionQuiz.new(@difficulty, score)
   end
 end

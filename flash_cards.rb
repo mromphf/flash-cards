@@ -6,11 +6,11 @@ include ArgUtility
 
 def take_quiz 
   quiz = QuizFactory.generate_quiz(ARGV[0], ARGV[1])
-  while quiz.running?
+  quiz.size.times do
     question = quiz.get_random_question
     answer = InputUtility.get_user_int(question.to_s)
     puts quiz.give_feedback(question, answer)
-    quiz.answer_question!(question, answer)
+    quiz = quiz.answer_question(question, answer)
   end
   puts quiz.results
 end

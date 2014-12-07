@@ -2,16 +2,14 @@ require_relative "../src/quiz.rb"
 require_relative "../src/question.rb"
 
 describe AdditionQuiz do
-  let(:quiz) { AdditionQuiz.new("novice") }
+  let(:quiz) { AdditionQuiz.new("novice", 0) }
 
   it "should be valid" do
     expect(quiz).to be_a(AdditionQuiz)
   end
 
   it "can tell when the quiz is still running" do
-    expect(quiz.running?).to eq true
-    (1..5).each { |i| quiz.answer_question!(AdditionQuestion.new(1, 1), 2) }
-    expect(quiz.running?).to eq false
+    expect(quiz.size).to eq 5
   end
 
   it "generates addition questions" do
@@ -26,22 +24,27 @@ describe AdditionQuiz do
   end
 
   it "displays the correct results" do
-    (1..5).each { |i| quiz.answer_question!(AdditionQuestion.new(1, 1), 2) }
-    expect(quiz.results).to eq("Final score: 100%")
+    expect(quiz.results).to eq("Final score: 0%")
+  end
 
-    question = AdditionQuestion.new(1, 1)
-    other_quiz = AdditionQuiz.new("novice")
-    other_quiz.answer_question!(question, 2)
-    other_quiz.answer_question!(question, 2)
-    other_quiz.answer_question!(question, 2)
-    other_quiz.answer_question!(question, 1)
-    other_quiz.answer_question!(question, 1)
-    expect(other_quiz.results).to eq("Final score: 60%")
+  describe "returns a new version of itself with an updated score" do
+    it "when answered correctly" do
+      question = AdditionQuestion.new(1, 1)
+      new_quiz = quiz.answer_question(question, 2)
+      new_quiz = new_quiz.answer_question(question, 2)
+      expect(new_quiz.results).to eq("Final score: 40%")
+    end
+    
+    it "when answered wrong" do
+      question = AdditionQuestion.new(1, 1)
+      new_quiz = quiz.answer_question(question, 3)
+      expect(new_quiz.results).to eq("Final score: 0%")
+    end
   end
 end
 
 describe SubtractionQuiz do
-  let(:quiz) { SubtractionQuiz.new("novice") }
+  let(:quiz) { SubtractionQuiz.new("novice", 0) }
 
   it "should be valid" do
     expect(quiz).to be_a(SubtractionQuiz)
@@ -57,10 +60,28 @@ describe SubtractionQuiz do
     expect(quiz.give_feedback(question, 4)).to eq "Correct!"
     expect(quiz.give_feedback(question, 3)).to eq "Wrong..."
   end
+
+  it "displays the correct results" do
+    expect(quiz.results).to eq("Final score: 0%")
+  end
+
+  describe "returns a new version of itself with an updated score" do
+    it "when answered correctly" do
+      question = SubtractionQuestion.new(4, 2)
+      new_quiz = quiz.answer_question(question, 2)
+      expect(new_quiz.results).to eq("Final score: 20%")
+    end
+    
+    it "when answered wrong" do
+      question = SubtractionQuestion.new(1, 1)
+      new_quiz = quiz.answer_question(question, 81)
+      expect(new_quiz.results).to eq("Final score: 0%")
+    end
+  end
 end
 
 describe MultiplicationQuiz do
-  let(:quiz) { MultiplicationQuiz.new("novice") }
+  let(:quiz) { MultiplicationQuiz.new("novice", 0) }
 
   it "should be valid" do
     expect(quiz).to be_a(MultiplicationQuiz)
@@ -76,10 +97,28 @@ describe MultiplicationQuiz do
     expect(quiz.give_feedback(question, 6)).to eq "Correct!"
     expect(quiz.give_feedback(question, 5)).to eq "Wrong..."
   end
+
+  it "displays the correct results" do
+    expect(quiz.results).to eq("Final score: 0%")
+  end
+
+  describe "returns a new version of itself with an updated score" do
+    it "when answered correctly" do
+      question = MultiplicationQuestion.new(2, 3)
+      new_quiz = quiz.answer_question(question, 6)
+      expect(new_quiz.results).to eq("Final score: 20%")
+    end
+    
+    it "when answered wrong" do
+      question = SubtractionQuestion.new(2, 3)
+      new_quiz = quiz.answer_question(question, 81)
+      expect(new_quiz.results).to eq("Final score: 0%")
+    end
+  end
 end
 
 describe DivisionQuiz do
-  let(:quiz) { DivisionQuiz.new("novice") }
+  let(:quiz) { DivisionQuiz.new("novice", 0) }
 
   it "should be valid" do
     expect(quiz).to be_a(DivisionQuiz)
@@ -94,5 +133,19 @@ describe DivisionQuiz do
     question = DivisionQuestion.new(6, 2)
     expect(quiz.give_feedback(question, 3)).to eq "Correct!"
     expect(quiz.give_feedback(question, 4)).to eq "Wrong..."
+  end
+
+  describe "returns a new version of itself with an updated score" do
+    it "when answered correctly" do
+      question = DivisionQuestion.new(8, 2)
+      new_quiz = quiz.answer_question(question, 4)
+      expect(new_quiz.results).to eq("Final score: 20%")
+    end
+    
+    it "when answered wrong" do
+      question = SubtractionQuestion.new(8, 2)
+      new_quiz = quiz.answer_question(question, 81)
+      expect(new_quiz.results).to eq("Final score: 0%")
+    end
   end
 end
