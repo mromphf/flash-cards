@@ -8,5 +8,5 @@ module GlobalConfig
   PARAMETER_RANGES = { NOVICE => 1..10,
                        INTERMEDIATE => 10..99,
                        ADVANCED => 100..299 }
-  QUIZ_LENGTH = 5
+  QUIZ_LENGTH = 10
 end

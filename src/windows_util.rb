@@ -21,11 +21,11 @@ class WindowsUtil
     win.getch
   end
 
-  def self.build_score_window(feedback = "")
+  def self.build_score_window(score = "")
     win = Window.new(WINDOW_HEIGHT, WINDOW_LENGTH, 7, (cols - WINDOW_LENGTH) / 2)
     win.box(?|, ?-)
     win.setpos(2, 3)
-    win.addstr("Last Answer: #{feedback}")
+    win.addstr("Score: #{score}")
     win.refresh
   end
 
@@ -44,5 +44,4 @@ class WindowsUtil
     win.addstr("ANSWER: ")
     win.getstr.to_i
   end
-
 end
