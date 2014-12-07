@@ -4,7 +4,7 @@ require_relative 'config'
 WINDOW_HEIGHT = 5
 WINDOW_LENGTH = 35
 
-class WindowsUtil 
+class WindowUtil 
   include Curses
   include GlobalConfig
 
