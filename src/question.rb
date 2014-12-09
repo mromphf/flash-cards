@@ -27,8 +27,7 @@ class AdditionQuestion < Question
   end
 
   def report_format(answer)
-    "Question: #{@operand_a} + #{@operand_b}\t" +
-      "#{answer}\t#{@operand_a + @operand_b}"
+    "#{to_s}\t#{answer}\t#{@operand_a + @operand_b}"
   end
 
   def self.get_random_question(difficulty)

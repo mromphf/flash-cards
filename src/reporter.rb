@@ -4,7 +4,7 @@ class Reporter
   end
 
   def header
-    "Question\tYour Answer\tActual Answer"
+    "Question\tSubmission\tAnswer"
   end
 
   def add_entry(entry)

@@ -32,7 +32,7 @@ describe AdditionQuestion do
     expect(question_c).to be_a(AdditionQuestion)
   end
 
-  it "cannot generate  arandom question with an invalid difficulty" do
+  it "cannot generate a random question with an invalid difficulty" do
     expect { AdditionQuestion.get_random_question("") }.to raise_error
     expect { AdditionQuestion.get_random_question("klj7S**&&&") }.to raise_error
     expect { AdditionQuestion.get_random_question("3334") }.to raise_error
@@ -40,7 +40,7 @@ describe AdditionQuestion do
   end
 
   it "can generate a report-format string" do
-    expect(question.report_format(9)).to eq "Question: 5 + 5\t9\t10"
+    expect(question.report_format(9)).to eq "5 + 5\t9\t10"
   end
 end
 

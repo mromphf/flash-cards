@@ -8,15 +8,18 @@ class WindowUtil
   WINDOW_HEIGHT = 5
   WINDOW_LENGTH = 35
 
-  def self.build_results_window(results)
+  def self.build_results_window(reporter, results)
     clear
     refresh
-    win = Window.new(WINDOW_HEIGHT + 1, WINDOW_LENGTH, 8, self.screen_center)
-
+    win = Window.new(15, 45, 8, self.screen_center)
     win.box(?|, ?-)
     win.setpos(2, 3)
-    win.addstr("#{results}")
-    win.setpos(3, 3)
+    win.addstr("#{reporter.header}")
+    (1..QUIZ_LENGTH).each do |i|
+      win.setpos(2 + i, 3)
+      win.addstr("#{reporter.report_line(i)}")
+    end
+    win.setpos(13, 3)
     win.addstr("Hit enter...")
     win.getch
   end
