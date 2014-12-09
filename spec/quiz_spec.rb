@@ -43,14 +43,10 @@ describe AdditionQuiz do
   end
 
   it "updates its score correctly" do
-    question = AdditionQuestion.new(1, 1)
     expect(quiz.display_score).to eq ""
-    new_quiz = quiz.answer_question(question, 2)
-    expect(new_quiz.display_score).to eq(".")
-    new_quiz = quiz.answer_question(question, 2)
-    expect(new_quiz.display_score).to eq("..")
-    new_quiz = quiz.answer_question(question, 3)
-    expect(new_quiz.display_score).to eq("..F")
+
+    quiz = AdditionQuiz.new("novice", [true, false, true])
+    expect(quiz.display_score).to eq ".F."
   end
 end
 
@@ -139,14 +135,10 @@ describe MultiplicationQuiz do
   end
 
   it "updates its score correctly" do
-    question = MultiplicationQuestion.new(2, 2)
     expect(quiz.display_score).to eq ""
-    new_quiz = quiz.answer_question(question, 4)
-    expect(new_quiz.display_score).to eq(".")
-    new_quiz = quiz.answer_question(question, 4)
-    expect(new_quiz.display_score).to eq("..")
-    new_quiz = quiz.answer_question(question, 6)
-    expect(new_quiz.display_score).to eq("..F")
+
+    quiz = MultiplicationQuiz.new("novice", [false, false, false, false])
+    expect(quiz.display_score).to eq "FFFF"
   end
 end
 
@@ -189,7 +181,7 @@ describe DivisionQuiz do
     expect(new_quiz.display_score).to eq(".")
     new_quiz = quiz.answer_question(question, 5)
     expect(new_quiz.display_score).to eq("..")
-    new_quiz = quiz.answer_question(question, 6)
-    expect(new_quiz.display_score).to eq("..F")
+    new_quiz = quiz.answer_question(question, 5)
+    expect(new_quiz.display_score).to eq("...")
   end
 end
