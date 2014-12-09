@@ -38,6 +38,10 @@ describe AdditionQuestion do
     expect { AdditionQuestion.get_random_question("3334") }.to raise_error
     expect { AdditionQuestion.get_random_question("novice-xxx") }.to raise_error
   end
+
+  it "can generate a report-format string" do
+    expect(question.report_format(9)).to eq "Question: 5 + 5\t9\t10"
+  end
 end
 
 describe SubtractionQuestion do

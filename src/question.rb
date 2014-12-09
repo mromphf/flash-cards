@@ -26,6 +26,11 @@ class AdditionQuestion < Question
     @operand_a + @operand_b == answer
   end
 
+  def report_format(answer)
+    "Question: #{@operand_a} + #{@operand_b}\t" +
+      "#{answer}\t#{@operand_a + @operand_b}"
+  end
+
   def self.get_random_question(difficulty)
     AdditionQuestion.new(random_operand(difficulty), 
                          random_operand(difficulty))
