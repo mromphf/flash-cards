@@ -49,6 +49,10 @@ class SubtractionQuestion < Question
     (@operand_a - @operand_b).abs == answer
   end
 
+  def report_format(answer)
+    "#{to_s}\t#{answer}\t\t#{@operand_a - @operand_b}"
+  end
+
   def self.get_random_question(difficulty)
     SubtractionQuestion.new(random_operand(difficulty), 
                             random_operand(difficulty))
@@ -62,6 +66,10 @@ class MultiplicationQuestion < Question
 
   def correct_answer?(answer)
     (@operand_a * @operand_b) == answer
+  end
+
+  def report_format(answer)
+    "#{to_s}\t#{answer}\t\t#{@operand_a * @operand_b}"
   end
 
   def self.get_random_question(difficulty)
@@ -84,6 +92,10 @@ class DivisionQuestion < Question
 
   def correct_answer?(answer)
     (@operand_a / @operand_b) == answer
+  end
+
+  def report_format(answer)
+    "#{to_s}\t#{answer}\t\t#{@operand_a / @operand_b}"
   end
 
   def self.get_random_question(difficulty)

@@ -11,7 +11,7 @@ class WindowUtil
   def self.build_results_window(reporter, results)
     clear
     refresh
-    win = Window.new(18, 45, 8, self.screen_center)
+    win = Window.new(18, 45, 8, (cols - 35) / 2)
     win.box(?|, ?-)
     win.setpos(2, 3)
     win.addstr("#{reporter.header}")

@@ -90,6 +90,10 @@ describe SubtractionQuestion do
     expect { SubtractionQuestion.get_random_question("3334") }.to raise_error
     expect { SubtractionQuestion.get_random_question("novice-xxx") }.to raise_error
   end
+
+  it "can generate a report-format string" do
+    expect(question.report_format(9)).to eq "10 - 5\t9\t\t5"
+  end
 end
 
 describe MultiplicationQuestion do
@@ -97,8 +101,7 @@ describe MultiplicationQuestion do
 
   describe "constructor" do
     it "should generate a valid multiplication question" do
-      expect(question).to be_a(MultiplicationQuestion)
-    end
+      expect(question).to be_a(MultiplicationQuestion) end
   end
 
   describe "to string" do
@@ -129,6 +132,10 @@ describe MultiplicationQuestion do
     expect { MultiplicationQuestion.get_random_question("klj7S**&&&") }.to raise_error
     expect { MultiplicationQuestion.get_random_question("3334") }.to raise_error
     expect { MultiplicationQuestion.get_random_question("novice-xxx") }.to raise_error
+  end
+
+  it "can generate a report-format string" do
+    expect(question.report_format(9)).to eq "10 * 5\t9\t\t50"
   end
 end
 
@@ -171,5 +178,9 @@ describe DivisionQuestion do
     expect { DivisionQuestion.get_random_question("klj7S**&&&") }.to raise_error
     expect { DivisionQuestion.get_random_question("3334") }.to raise_error
     expect { DivisionQuestion.get_random_question("novice-xxx") }.to raise_error
+  end
+
+  it "can generate a report-format string" do
+    expect(question.report_format(9)).to eq "10 / 5\t9\t\t2"
   end
 end
