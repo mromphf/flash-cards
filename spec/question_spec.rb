@@ -40,7 +40,7 @@ describe AdditionQuestion do
   end
 
   it "can generate a report-format string" do
-    expect(question.report_format(9)).to eq "5 + 5\t9\t10"
+    expect(question.report_format(9)).to eq "5 + 5\t9\t\t10"
   end
 end
 
