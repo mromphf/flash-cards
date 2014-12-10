@@ -23,25 +23,6 @@ describe AdditionQuiz do
     expect(quiz.give_feedback(question, 3)).to eq "Wrong..."
   end
 
-  it "displays the correct results" do
-    expect(quiz.results).to eq("Final score: 0%")
-  end
-
-  describe "returns a new version of itself with an updated final score" do
-    it "when answered correctly" do
-      question = AdditionQuestion.new(1, 1)
-      new_quiz = quiz.answer_question(question, 2)
-      new_quiz = new_quiz.answer_question(question, 2)
-      expect(new_quiz.results).to eq("Final score: 20%")
-    end
-    
-    it "when answered wrong" do
-      question = AdditionQuestion.new(1, 1)
-      new_quiz = quiz.answer_question(question, 3)
-      expect(new_quiz.results).to eq("Final score: 0%")
-    end
-  end
-
   it "updates its score correctly" do
     expect(quiz.display_score).to eq ""
 
@@ -66,24 +47,6 @@ describe SubtractionQuiz do
     question = SubtractionQuestion.new(3, 7)
     expect(quiz.give_feedback(question, 4)).to eq "Correct!"
     expect(quiz.give_feedback(question, 3)).to eq "Wrong..."
-  end
-
-  it "displays the correct results" do
-    expect(quiz.results).to eq("Final score: 0%")
-  end
-
-  describe "returns a new version of itself with an updated final score" do
-    it "when answered correctly" do
-      question = SubtractionQuestion.new(4, 2)
-      new_quiz = quiz.answer_question(question, 2)
-      expect(new_quiz.results).to eq("Final score: 10%")
-    end
-    
-    it "when answered wrong" do
-      question = SubtractionQuestion.new(1, 1)
-      new_quiz = quiz.answer_question(question, 81)
-      expect(new_quiz.results).to eq("Final score: 0%")
-    end
   end
 
   it "updates its score correctly" do
@@ -116,24 +79,6 @@ describe MultiplicationQuiz do
     expect(quiz.give_feedback(question, 5)).to eq "Wrong..."
   end
 
-  it "displays the correct results" do
-    expect(quiz.results).to eq("Final score: 0%")
-  end
-
-  describe "returns a new version of itself with an updated final score" do
-    it "when answered correctly" do
-      question = MultiplicationQuestion.new(2, 3)
-      new_quiz = quiz.answer_question(question, 6)
-      expect(new_quiz.results).to eq("Final score: 10%")
-    end
-    
-    it "when answered wrong" do
-      question = SubtractionQuestion.new(2, 3)
-      new_quiz = quiz.answer_question(question, 81)
-      expect(new_quiz.results).to eq("Final score: 0%")
-    end
-  end
-
   it "updates its score correctly" do
     expect(quiz.display_score).to eq ""
 
@@ -158,30 +103,5 @@ describe DivisionQuiz do
     question = DivisionQuestion.new(6, 2)
     expect(quiz.give_feedback(question, 3)).to eq "Correct!"
     expect(quiz.give_feedback(question, 4)).to eq "Wrong..."
-  end
-
-  describe "returns a new version of itself with an updated final score" do
-    it "when answered correctly" do
-      question = DivisionQuestion.new(8, 2)
-      new_quiz = quiz.answer_question(question, 4)
-      expect(new_quiz.results).to eq("Final score: 10%")
-    end
-    
-    it "when answered wrong" do
-      question = SubtractionQuestion.new(8, 2)
-      new_quiz = quiz.answer_question(question, 81)
-      expect(new_quiz.results).to eq("Final score: 0%")
-    end
-  end
-
-  it "updates its score correctly" do
-    question = DivisionQuestion.new(10, 2)
-    expect(quiz.display_score).to eq ""
-    new_quiz = quiz.answer_question(question, 5)
-    expect(new_quiz.display_score).to eq(".")
-    new_quiz = quiz.answer_question(question, 5)
-    expect(new_quiz.display_score).to eq("..")
-    new_quiz = quiz.answer_question(question, 5)
-    expect(new_quiz.display_score).to eq("...")
   end
 end

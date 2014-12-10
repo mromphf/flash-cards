@@ -22,12 +22,6 @@ class Quiz
   def give_feedback(question, answer)
     question.correct_answer?(answer) ? "Correct!" : "Wrong..."
   end
-
-  def results
-    correct_answers = 0
-    @scores.each { |correct| correct_answers += 1 if correct }
-    "Final score: #{((correct_answers.to_f / QUIZ_LENGTH.to_f) * 100).to_i}%"
-  end
 end
 
 class AdditionQuiz < Quiz

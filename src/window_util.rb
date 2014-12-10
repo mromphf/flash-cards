@@ -8,7 +8,7 @@ class WindowUtil
   WINDOW_HEIGHT = 5
   WINDOW_LENGTH = 35
 
-  def self.build_results_window(reporter, results)
+  def self.build_results_window(reporter)
     clear
     refresh
     win = Window.new(18, 45, 8, (cols - 35) / 2)
@@ -20,7 +20,7 @@ class WindowUtil
       win.addstr("#{reporter.report_line(i)}")
     end
     win.setpos(14, 3)
-    win.addstr(results)
+    win.addstr(reporter.final_score)
     win.setpos(16, 3)
     win.addstr("Hit enter...")
     win.getch

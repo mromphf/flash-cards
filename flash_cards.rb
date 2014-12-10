@@ -17,10 +17,11 @@ def take_quiz
     WindowUtil.build_question_window(question)
     answer = WindowUtil.build_answer_window
     quiz = quiz.answer_question(question, answer)
-    reporter = reporter.add_entry(question.report_format(answer))
+    reporter = reporter.add_entry(question.report_format(answer),
+                                  question.correct_answer?(answer))
     WindowUtil.build_score_window(quiz.display_score)
   end
-  WindowUtil.build_results_window(reporter, quiz.results)
+  WindowUtil.build_results_window(reporter)
 end
 
 def initialize_interface
