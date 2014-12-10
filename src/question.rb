@@ -50,7 +50,7 @@ class SubtractionQuestion < Question
   end
 
   def report_format(answer)
-    "#{to_s}\t#{answer}\t\t#{@operand_a - @operand_b}"
+    "#{to_s}\t#{answer}\t\t#{(@operand_a - @operand_b).abs}"
   end
 
   def self.get_random_question(difficulty)

@@ -91,8 +91,15 @@ describe SubtractionQuestion do
     expect { SubtractionQuestion.get_random_question("novice-xxx") }.to raise_error
   end
 
-  it "can generate a report-format string" do
-    expect(question.report_format(9)).to eq "10 - 5\t9\t\t5"
+  describe "can successfully generate a report-format string" do
+    it "when the first operand higher" do
+      expect(question.report_format(9)).to eq "10 - 5\t9\t\t5"
+    end
+
+    it "when the second operand higher" do
+      new_question = SubtractionQuestion.new(3, 7)
+      expect((new_question).report_format(1)).to eq "7 - 3\t1\t\t4"
+    end
   end
 end
 
