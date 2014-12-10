@@ -15,8 +15,11 @@ describe Reporter do
   it "builds a collection of report lines" do
     question = AdditionQuestion.new(5, 5)
     answer = 9
-    new_reporter = reporter.add_entry(question.report_format(answer), true)
+    new_reporter = reporter.add_entry(question, answer)
     expect(new_reporter.report_line(0)).to eq "5 + 5\t9\t\t10"
+
+    new_reporter = reporter.add_entry(question, answer)
+    expect(new_reporter.report_line(1)).to eq "5 + 5\t9\t\t10"
   end
 
   it "can correctly assert the final score" do

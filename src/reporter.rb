@@ -12,8 +12,10 @@ class Reporter
     "Question\tSubmission\tAnswer"
   end
 
-  def add_entry(entry, correct_answer)
-    Reporter.new(@lines << entry, @scores << correct_answer)
+  def add_entry(question, answer)
+    report_line = question.report_format(answer)
+    correct = question.correct_answer?(answer)
+    Reporter.new(@lines << report_line, @scores << correct)
   end
 
   def report_line(index)
@@ -22,7 +24,7 @@ class Reporter
 
   def final_score
     score = 0
-    @scores.each { |correct| score += correct ? 1 : 0 }
+    @scores.each { |correct| score += 1 if correct }
     "Final Score: #{((score.to_f / QUIZ_LENGTH.to_f) * 100).to_i}%"
   end
 end
