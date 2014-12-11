@@ -17,12 +17,6 @@ describe AdditionQuiz do
     expect(question).to be_a(AdditionQuestion)
   end
 
-  it "gives the correct feedback when a question is answered" do
-    question = AdditionQuestion.new(1, 1)
-    expect(quiz.give_feedback(question, 2)).to eq "Correct!"
-    expect(quiz.give_feedback(question, 3)).to eq "Wrong..."
-  end
-
   it "updates its score correctly" do
     expect(quiz.display_score).to eq ""
 
@@ -41,12 +35,6 @@ describe SubtractionQuiz do
   it "generates subtraction questions" do
     question = quiz.get_random_question
     expect(question).to be_a(SubtractionQuestion)
-  end
-
-  it "gives the correct feedback when a question is answered" do
-    question = SubtractionQuestion.new(3, 7)
-    expect(quiz.give_feedback(question, 4)).to eq "Correct!"
-    expect(quiz.give_feedback(question, 3)).to eq "Wrong..."
   end
 
   it "updates its score correctly" do
@@ -73,12 +61,6 @@ describe MultiplicationQuiz do
     expect(question).to be_a(MultiplicationQuestion)
   end
 
-  it "gives the correct feedback when a question is answered" do
-    question = MultiplicationQuestion.new(3, 2)
-    expect(quiz.give_feedback(question, 6)).to eq "Correct!"
-    expect(quiz.give_feedback(question, 5)).to eq "Wrong..."
-  end
-
   it "updates its score correctly" do
     expect(quiz.display_score).to eq ""
 
@@ -99,9 +81,10 @@ describe DivisionQuiz do
     expect(question).to be_a(DivisionQuestion)
   end
 
-  it "gives the correct feedback when a question is answered" do
-    question = DivisionQuestion.new(6, 2)
-    expect(quiz.give_feedback(question, 3)).to eq "Correct!"
-    expect(quiz.give_feedback(question, 4)).to eq "Wrong..."
+  it "updates its score correctly" do
+    expect(quiz.display_score).to eq ""
+
+    quiz = MultiplicationQuiz.new("novice", [false, true, false, true])
+    expect(quiz.display_score).to eq "F.F."
   end
 end

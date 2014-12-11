@@ -12,17 +12,26 @@ describe Reporter do
     expect(reporter.header).to eq "Question\tSubmission\tAnswer"
   end
 
-  it "builds a collection of report lines" do
+  it "generates a new repoter when a report line is addded" do
     question = AdditionQuestion.new(5, 5)
-    answer = 9
-    new_reporter = reporter.add_entry(question, answer)
-    expect(new_reporter.report_line(0)).to eq "5 + 5\t9\t\t10"
-
-    new_reporter = reporter.add_entry(question, answer)
-    expect(new_reporter.report_line(1)).to eq "5 + 5\t9\t\t10"
+    expect(reporter.add_entry(question, 9)).to be_a(Reporter)
   end
 
-  it "can correctly assert the final score" do
+  it "builds a collection of report lines" do
+    question = AdditionQuestion.new(5, 5)
+    new_reporter = reporter.add_entry(question, 9)
+    expect(new_reporter.report_line(0)).to eq "5 + 5\t9\t\t10"
+
+    question = AdditionQuestion.new(3, 3)
+    new_reporter = reporter.add_entry(question, 7)
+    expect(new_reporter.report_line(1)).to eq "3 + 3\t7\t\t6"
+    
+    question = AdditionQuestion.new(4, 5)
+    new_reporter = reporter.add_entry(question, 7)
+    expect(new_reporter.report_line(2)).to eq "4 + 5\t7\t\t9"
+  end
+
+  it "can correctly display the final score" do
     reporter = Reporter.new([], [true, true, true])
     expect(reporter.final_score).to eq "Final Score: 30%"
 

@@ -18,10 +18,6 @@ class Quiz
     @scores.each { |correct| correct ? scoreboard << "." : scoreboard << "F" }
     scoreboard
   end
-
-  def give_feedback(question, answer)
-    question.correct_answer?(answer) ? "Correct!" : "Wrong..."
-  end
 end
 
 class AdditionQuiz < Quiz
