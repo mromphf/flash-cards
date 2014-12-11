@@ -29,7 +29,7 @@ class WindowUtil
     win.box(?|, ?-)
     win.setpos(2, 3)
     win.addstr("ANSWER: ")
-    win.getstr.to_i
+    win.getstr.chomp.to_i
   end
 
   private

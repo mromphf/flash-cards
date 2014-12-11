@@ -1,7 +1,6 @@
 #!/usr/bin/ruby1.9.1 -w
 require 'curses'
 require_relative 'src/arg_utility'
-require_relative 'src/input_utility'
 require_relative 'src/window_util'
 require_relative 'src/quiz_factory'
 require_relative 'src/reporter'
