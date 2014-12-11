@@ -32,6 +32,24 @@ class WindowUtil
     win.getstr.chomp.to_i
   end
 
+  def self.build_results_window(reporter)
+    clear
+    refresh
+    win = Window.new(18, 45, 8, (cols - 45) / 2)
+    win.box(?|, ?-)
+    win.setpos(2, 3)
+    win.addstr("#{reporter.header}")
+    (1..QUIZ_LENGTH).each do |i|
+      win.setpos(3 + i, 3)
+      win.addstr("#{reporter.report_line(i)}")
+    end
+    win.setpos(14, 3)
+    win.addstr("#{reporter.final_score}")
+    win.setpos(16, 3)
+    win.addstr("Hit enter...")
+    win.getch
+  end
+
   private
     def self.screen_center
       (cols - WINDOW_LENGTH) / 2
