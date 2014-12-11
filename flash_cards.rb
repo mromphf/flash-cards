@@ -20,7 +20,7 @@ def take_quiz
     reporter = reporter.add_entry(question, answer)
     WindowUtil.build_score_window(quiz.display_score)
   end
-  WindowUtil.build_results_window(reporter)
+  reporter.build_results_window
 end
 
 def initialize_interface

@@ -8,24 +8,6 @@ class WindowUtil
   WINDOW_HEIGHT = 5
   WINDOW_LENGTH = 35
 
-  def self.build_results_window(reporter)
-    clear
-    refresh
-    win = Window.new(18, 45, 8, (cols - 45) / 2)
-    win.box(?|, ?-)
-    win.setpos(2, 3)
-    win.addstr("#{reporter.header}")
-    (1..QUIZ_LENGTH).each do |i|
-      win.setpos(3 + i, 3)
-      win.addstr("#{reporter.report_line(i)}")
-    end
-    win.setpos(14, 3)
-    win.addstr(reporter.final_score)
-    win.setpos(16, 3)
-    win.addstr("Hit enter...")
-    win.getch
-  end
-
   def self.build_score_window(score = "")
     win = Window.new(WINDOW_HEIGHT, WINDOW_LENGTH, 7, self.screen_center)
     win.box(?|, ?-)
