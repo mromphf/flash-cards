@@ -4,8 +4,8 @@ require_relative "config.rb"
 class Quiz
   include GlobalConfig
 
-  def initialize(difficulty, score = [])
-    @scores = score
+  def initialize(difficulty, scores = [])
+    @scores = scores
     @difficulty = difficulty
   end
 
@@ -27,7 +27,7 @@ class AdditionQuiz < Quiz
   
   def answer_question(question, answer)
     score = @scores
-    score << question.correct_answer?(answer) ? true : false
+    score << question.correct_answer?(answer)
     AdditionQuiz.new(@difficulty, score)
   end
 end
@@ -39,7 +39,7 @@ class SubtractionQuiz < Quiz
   
   def answer_question(question, answer)
     score = @scores
-    score << question.correct_answer?(answer) ? true : false
+    score << question.correct_answer?(answer)
     SubtractionQuiz.new(@difficulty, score)
   end
 end
@@ -51,7 +51,7 @@ class MultiplicationQuiz < Quiz
 
   def answer_question(question, answer)
     score = @scores
-    score << question.correct_answer?(answer) ? true : false
+    score << question.correct_answer?(answer)
     MultiplicationQuiz.new(@difficulty, score)
   end
 end
@@ -63,7 +63,7 @@ class DivisionQuiz < Quiz
 
   def answer_question(question, answer)
     score = @scores
-    score << question.correct_answer?(answer) ? true : false
+    score << question.correct_answer?(answer)
     DivisionQuiz.new(@difficulty, score)
   end
 end
