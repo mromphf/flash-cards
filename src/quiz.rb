@@ -26,9 +26,9 @@ class AdditionQuiz < Quiz
   end
   
   def answer_question(question, answer)
-    score = @scores
-    score << question.correct_answer?(answer)
-    AdditionQuiz.new(@difficulty, score)
+    scores = @scores
+    scores << question.correct_answer?(answer)
+    AdditionQuiz.new(@difficulty, scores)
   end
 end
 
@@ -38,9 +38,9 @@ class SubtractionQuiz < Quiz
   end
   
   def answer_question(question, answer)
-    score = @scores
-    score << question.correct_answer?(answer)
-    SubtractionQuiz.new(@difficulty, score)
+    scores = @scores
+    scores << question.correct_answer?(answer)
+    SubtractionQuiz.new(@difficulty, scores)
   end
 end
 
@@ -50,9 +50,9 @@ class MultiplicationQuiz < Quiz
   end
 
   def answer_question(question, answer)
-    score = @scores
-    score << question.correct_answer?(answer)
-    MultiplicationQuiz.new(@difficulty, score)
+    scores = @scores
+    scores << question.correct_answer?(answer)
+    MultiplicationQuiz.new(@difficulty, scores)
   end
 end
 
@@ -62,8 +62,8 @@ class DivisionQuiz < Quiz
   end
 
   def answer_question(question, answer)
-    score = @scores
-    score << question.correct_answer?(answer)
-    DivisionQuiz.new(@difficulty, score)
+    scores = @scores
+    scores << question.correct_answer?(answer)
+    DivisionQuiz.new(@difficulty, scores)
   end
 end
