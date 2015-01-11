@@ -2,7 +2,8 @@ require_relative '../src/quiz_factory.rb'
 
 describe QuizFactory do
   it "will generate addition quizzes" do
-    quiz = QuizFactory.generate_quiz("add", "novice")
+    args = ["sub", "novice"]
+    quiz = QuizFactory.generate_quiz(args[0], args[1])
     expect(quiz).to be_a(AdditionQuiz)
   end
 
@@ -19,7 +20,7 @@ describe QuizFactory do
   end
 
   it "will generate divison quizzes" do
-    args = ["div", "advanced-xxx"]
+    args = ["div", "advanced"]
     quiz = QuizFactory.generate_quiz(args[0], args[1])
     expect(quiz).to be_a(DivisionQuiz)
   end

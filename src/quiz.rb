@@ -1,7 +1,7 @@
 require_relative "question.rb"
 require_relative "config.rb"
 
-class Quiz
+class AdditionQuiz
   include GlobalConfig
 
   def initialize(difficulty, scores = [])
@@ -18,9 +18,7 @@ class Quiz
     @scores.each { |correct| correct ? scoreboard << "." : scoreboard << "F" }
     scoreboard
   end
-end
 
-class AdditionQuiz < Quiz
   def get_random_question
     AdditionQuestion.get_random_question(@difficulty)
   end
@@ -32,7 +30,7 @@ class AdditionQuiz < Quiz
   end
 end
 
-class SubtractionQuiz < Quiz
+class SubtractionQuiz < AdditionQuiz
   def get_random_question
     SubtractionQuestion.get_random_question(@difficulty)
   end
@@ -44,7 +42,7 @@ class SubtractionQuiz < Quiz
   end
 end
 
-class MultiplicationQuiz < Quiz
+class MultiplicationQuiz < AdditionQuiz
   def get_random_question
     MultiplicationQuestion.get_random_question(@difficulty)
   end
@@ -56,7 +54,7 @@ class MultiplicationQuiz < Quiz
   end
 end
 
-class DivisionQuiz < Quiz
+class DivisionQuiz < AdditionQuiz
   def get_random_question
     DivisionQuestion.get_random_question(@difficulty)
   end
