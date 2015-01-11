@@ -1,6 +1,6 @@
 require_relative "config.rb"
 
-class Question
+class AdditionQuestion 
   include GlobalConfig
 
   def initialize(operand_a, operand_b)
@@ -8,16 +8,6 @@ class Question
     @operand_b = operand_b
   end
 
-  protected
-    def self.random_operand(difficulty)
-      if PARAMETER_RANGES[difficulty].nil?
-        raise "ERROR: Cannot generate operand with the difficulty provided."
-      end
-      Random.rand(PARAMETER_RANGES[difficulty])
-    end
-end
-
-class AdditionQuestion < Question
   def to_s
     "#{@operand_a} + #{@operand_b}"
   end
@@ -34,9 +24,17 @@ class AdditionQuestion < Question
     AdditionQuestion.new(random_operand(difficulty), 
                          random_operand(difficulty))
   end
+
+  protected
+    def self.random_operand(difficulty)
+      if PARAMETER_RANGES[difficulty].nil?
+        raise "ERROR: Cannot generate operand with the difficulty provided."
+      end
+      Random.rand(PARAMETER_RANGES[difficulty])
+    end
 end
 
-class SubtractionQuestion < Question
+class SubtractionQuestion < AdditionQuestion
   def to_s
     if @operand_a >= @operand_b
       "#{@operand_a} - #{@operand_b}"
@@ -59,7 +57,7 @@ class SubtractionQuestion < Question
   end
 end
 
-class MultiplicationQuestion < Question
+class MultiplicationQuestion < AdditionQuestion
   def to_s
     "#{@operand_a} * #{@operand_b}"
   end
@@ -78,7 +76,7 @@ class MultiplicationQuestion < Question
   end
 end
 
-class DivisionQuestion < Question
+class DivisionQuestion < AdditionQuestion
   def initialize(operand_a, operand_b)
     if operand_b > operand_a
       raise "ERROR: Second operand of a divison question must be smaller than the first."
