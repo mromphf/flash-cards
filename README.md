@@ -1,7 +1,7 @@
 Flash Cards v1.0
 
-Run instructions:
-ruby flash\_cards.rb <operation> <difficulty>
+Run instructions:  
+ruby flash\_cards.rb \<operation\> \<difficulty\>
 
 AUTHOR: Mark Romphf  
 DATE: December 2014
