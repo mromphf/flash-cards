@@ -38,17 +38,17 @@ class WindowUtil
   def self.build_results_window(reporter)
     clear
     refresh
-    win = Window.new(18, 45, self.top_ten_percent, (cols - 45) / 2)
+    win = Window.new(19, 45, self.top_ten_percent, (cols - 45) / 2)
     win.box(?|, ?-)
     win.setpos(2, 3)
     win.addstr("#{reporter.header}")
-    (1..QUIZ_LENGTH).each do |i|
-      win.setpos(3 + i, 3)
+    (0..(QUIZ_LENGTH - 1)).each do |i|
+      win.setpos(4 + i, 3)
       win.addstr("#{reporter.report_line(i)}")
     end
-    win.setpos(14, 3)
+    win.setpos(15, 3)
     win.addstr("#{reporter.final_score}")
-    win.setpos(16, 3)
+    win.setpos(17, 3)
     win.addstr("Hit enter...")
     win.getch
   end
